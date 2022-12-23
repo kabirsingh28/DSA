@@ -20,7 +20,7 @@ int main(){
     for(int i=0;i<n;i++){
     cin >> arr[i];
     }
-    for(int i=0;i<n;i++){
+    for(int i=0;i<n-1;i++){
      int d,s=smallest(arr,i,n);
      d=arr[i];
      arr[i]=arr[s];
