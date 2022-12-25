@@ -1,0 +1,1 @@
+goona practice some quetions on 2D arrays and start then start pointers
