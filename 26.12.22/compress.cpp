@@ -1,29 +1,30 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
-void compress(string &s){
-  {   int flag,x;
-      string output; 
-      for(int i=0; i<s.size();){
-        output+=s[i];
-        int flag=0;
-      for(int j=0; j<s.size();j++){
-          if(s[j]==s[i]){
-              flag++;
-          }
-         
-      } 
-        if(flag!=1){
-            x=flag;
-        output+=to_string(x);
+string compress(string &s){
+    string output = "";
+    int flag,j;
+    for(int i=0; i<s.size(); i++){
+        flag=0;
+        for(j=i;j<s.size();j++){
+            if(s[j]==s[i]){
+                flag++;
+            }
+            else{
+                break;
+            }
         }
-        i=flag+i;
-        
-      }
-      cout<<output<<endl;
+        if(flag!=1){
+            output+=s[i]+to_string(flag);
+        }
+        else{
+            output+=s[i];
+        }
+        i=j-1;
+    }
+    return output;
 }
-}
+ 
 
 int main(){
     string str;
@@ -31,7 +32,6 @@ int main(){
     cin>>t;
     while(t--){
     cin>>str;
-    compress(str);
-    
-}
+    cout<<compress(str);
+    }
 }
