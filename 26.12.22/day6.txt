@@ -1,1 +1,2 @@
-goona practice some quetions on 2D arrays and start then start pointers
+goona practice some quetions on arrays and strings.
+then start with pointers
