@@ -1,10 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-bool check(int p[], int size, int a){
-     if(p[0]==a) return true; 
-     if(size==1) return false;
-     check(p+1,size-1,a);
+int last_index(int p[], int size , int x, int i=0)
+{   int a;
+    if(p[0]==x) a=i;
+    if(size==1) return a;
+    last_index(p+1,size-1,x,i+1);
 }
 
 int main()
@@ -15,9 +16,9 @@ int main()
     for (int i = 0; i < n; i++){
         cin >> p[i];
     }
-    int a;
-    cin>>a;
-    cout<<check(p,n,a);
+    int x;
+    cin>>x;
+    cout<<last_index(p,n,x);
     delete p;
     return 0;
 }
