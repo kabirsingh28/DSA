@@ -1,1 +1,1 @@
-solving assignment 2 of recursion
+completing lecture 2 of recursions
