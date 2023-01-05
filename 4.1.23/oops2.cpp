@@ -16,7 +16,7 @@ int main()
     cout<<s2.age<<" "<<s3.rollno<<" "<<s1.age<<" ";
 
     students * s4 = new students();
-    (*s4).age =98;
+    s4->age =98;
     cout<<(*s4).age;
 
 
