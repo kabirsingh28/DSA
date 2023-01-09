@@ -1,1 +1,1 @@
-goona complete lecture 2 of linked list
+continued oops lecture 2 day 4
