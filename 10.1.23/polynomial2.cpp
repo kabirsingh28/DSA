@@ -1,9 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
-#include "polynomialClass.cpp"
-
-int main() 
-{   int N;
+#include "polynomialClass2.cpp"
+int main()
+{    int N;
     cin>>N;
 
     int * degree_1 = new int[N];
@@ -16,7 +15,10 @@ int main()
         cin>>coeff_1[i];
     }
     
-    polynomial p1(degree_1,coeff_1,degree_1[N-1]);
+    polynomial p1;
+    for(int i=0; i<N;i++){
+        p1.setCoeff(degree_1[i],coeff_1[i]);
+    }
 
     int M;
     cin>>M;
@@ -31,14 +33,23 @@ int main()
         cin>>coeff_2[i];
     }
     
-    polynomial p2(degree_2,coeff_2,degree_2[M-1]);
+    polynomial p2;
+    for(int i=0; i<M;i++){
+        p2.setCoeff(degree_2[i],coeff_2[i]);
+    }
     
-    cout<<"p1: ";
-    p1.print();
-    cout<<"p2: ";
-    p2.print();
     polynomial p3 = p1+p2;
+    cout<<"addition: ";
     p3.print();
-    (p1+p2).print();
+
+    polynomial p4 = p1-p2;
+    cout<<"substraction: ";
+    p4.print();
+
+    polynomial p5 = p1*p2;
+    cout<<"multiplication: ";
+    p5.print();
+
     
+    return 0;
 }
