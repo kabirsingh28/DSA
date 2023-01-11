@@ -19,6 +19,7 @@ int main()
     for(int i=0; i<N;i++){
         p1.setCoeff(degree_1[i],coeff_1[i]);
     }
+    p1.print();
 
     int M;
     cin>>M;
