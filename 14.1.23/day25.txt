@@ -1,1 +1,1 @@
-finished linked list
+solving assignment 1 of linked list
