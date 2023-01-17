@@ -1,1 +1,1 @@
-finished lecture 2 of linked list
+finished assignment 2 of linked list
