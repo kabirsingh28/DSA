@@ -89,10 +89,14 @@ node* reversell_2(node * head){
 }
 
 
+
+
+
 int main()
 {   node * head = take_input();
-    head = reversell_2(head);
-    print(head);
+    node * head1 = take_input();
+    node * head2 = merge_ll(head,head1);
+    print(head2);
 
     
     
