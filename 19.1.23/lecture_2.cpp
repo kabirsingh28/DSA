@@ -72,6 +72,7 @@ Pair reversell_better(node * head){
        ans.head=head;
        ans.tail=head;
        return ans;
+
     }
 
     Pair smallans = reversell_better(head->next); //head and tail of samll reversed ll gets saved in smallans
@@ -90,7 +91,7 @@ node* reversell_2(node * head){
 
 int main()
 {   node * head = take_input();
-    head = reversell_better(head);
+    head = reversell_2(head);
     print(head);
 
     
