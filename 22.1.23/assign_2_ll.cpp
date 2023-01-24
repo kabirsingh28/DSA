@@ -134,6 +134,13 @@ node* delete_MN(int n, int m, node * head){
 node* swap_ij(int i, int j, node * head){
     node * temp = head;
     int count = 0;
+    if(i==0 && j==1){
+         node * c1 = head;
+         node * c2 = head->next;
+         c1->next = c2->next;
+         c2->next = c1;
+         return c2;
+    }
     if(i==0){
         node * c1 = head;
         while(count!=j-1){
@@ -223,20 +230,21 @@ int len(node * head){
     return count;
 }
 
-node* bubble_sort(node * head){
-    node * a = head;
-    node * b = head->next;
-    int i = 0;
-    while(b!=NULL){
-   if(a->data>b->data){
-       head = swap_ij(i,i+1,);
-       print(head);
+node* b_sort(node * head){
+   node * temp = head;
+   int i = 0;
+   for(int j=0; j<len(head);j++){
+   while(temp->next!=NULL){
+   if(temp->data>temp->next->data){
+     temp=temp->next;
+     head = swap_ij(i,i+1,head);
    }
-       i++;
-       a=b;
-       b=b->next;
+   temp=temp->next;
+   i++;
    }
-
+   temp = head;
+   i=0;
+}
 return head;
 }
 
@@ -249,11 +257,12 @@ int main()
     // int n,m;
     // cin>>n>>m;
     //head = delete_MN(n,m,head);
-    //head = swap_ij(n,m,head);
+    //head = swap_ij(0,1,head);
     // int k;
     // cin>>k;
     // head = k_reverse(k,head);
-    head = bubble_sort(head);
+    head = b_sort(head);
+    
     print(head);
     return 0;
 }
