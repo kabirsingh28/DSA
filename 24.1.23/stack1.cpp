@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#include "dynamic_stack.cpp"
+#include "dynamic_stack.h" // .h file, can't include main in it
 
 int main()
 {   Stack s;
