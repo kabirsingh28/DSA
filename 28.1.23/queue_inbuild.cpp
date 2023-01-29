@@ -23,9 +23,10 @@ int main()
         cout<<q.front()<<" ";
         q.pop();
     }
+    cout<<endl;
 
     cout<<q.size()<<" "<<q.empty();
-    q.pop();
+    
 
 
     return 0;
