@@ -5,27 +5,33 @@ using namespace std;
 int main()
 {   
     stack<char> s;
-    int i=0,flag=0;
     string str;
+    bool isredundant;
     cin>>str;
-    while(i!=str.length()){
-        int count=0;
-        for(;str[i]!=')';i++){
+    for(int i=0; i<str.length(); i++){
+        if(str[i]=='(' || str[i]=='+' || str[i]=='-' || str[i]=='*' || str[i]=='/'){
             s.push(str[i]);
         }
-        i++;
-        while(s.top()!='('){
-            count++;
+        else if(str[i]==')'){
+               isredundant = true; //vese we have assumed ke isredundant = true
+            while(s.top()!='('){
+            if(s.top()=='+' || s.top()=='-' || s.top()=='*' || s.top()=='/'){
+                 isredundant = false; //isredundant is set to false isf '(+)' such situation arises, i.e brackets de vich koi signs aa jaan
+            }
             s.pop();
         }
         s.pop();
-        if(count==0||count==1){
-            cout<<"true";
-            flag=1;
-            break;
+        if(isredundant){
+             cout<<"true";
+             break;
+             }
         }
     }
-    if(flag==0) cout<<"false";
 
+    if(!isredundant){
+        cout<<"false";
+    }
+
+    
     return 0;
 }
