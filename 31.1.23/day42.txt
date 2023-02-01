@@ -1,1 +1,1 @@
-started tress
+finished assignment on stacks and queue
