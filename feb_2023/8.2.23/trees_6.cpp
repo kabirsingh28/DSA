@@ -99,12 +99,39 @@ int heigth_of_tree(treenode<int> * root){
     return height+1;
 }
 
+void depth_of_node(int d, treenode<int> * root){
+    if(root==NULL) return;   
+    if(d==0){
+        cout<<root->data<<" ";
+    }
+    else{
+        for(int i=0; i<root->children.size(); i++){
+            depth_of_node(d-1,root->children[i]);
+        }
+    }
+}
+
+int count_leaf_nodes(treenode<int> * root){
+    int ans=0;
+    if(root->children.size()==0){
+        return 1;
+    }
+    for(int i=0; i<root->children.size(); i++){
+        ans+=count_leaf_nodes(root->children[i]);
+    }
+    return ans;
+}
+
 int main()
 {   treenode<int> * root = takeinput_levelWise();
     // cout<<endl<<"printing tree level wise: "<<endl;
     // print(root);
     //cout<<sum_nodes(root);
     //cout<<largest_node(root);
-    cout<<heigth_of_tree(root);
+    //cout<<heigth_of_tree(root);
+    // int d;
+    // cin>>d;
+    // depth_of_node(d,root);
+    cout<<count_leaf_nodes(root);
     return 0;
 }
