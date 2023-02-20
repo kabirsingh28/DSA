@@ -68,9 +68,36 @@ Pair<int> max_childSum(treenode<int> * root){
 
 }
 
+bool struct_equall(treenode<int> * root1, treenode<int> * root2){
+    int bool_status = true;
+    if(root1->data!=root2->data){
+        return false;
+    }
+
+    else if(root1->children.size()!=root2->children.size()){
+        return false;
+    }
+    else{
+        for(int i=0; i<root1->children.size(); i++){
+          if(!struct_equall(root1->children[i],root2->children[i])){
+        return false;
+          }
+        }
+    }
+
+    return bool_status;
+    
+}
 
 int main()
-{   treenode<int> * root = takeinput_levelWise();
-    cout<<max_childSum(root).data;
+{   treenode<int> * root1 = takeinput_levelWise();
+    treenode<int> * root2 = takeinput_levelWise();
+    if(struct_equall(root1,root2)){
+        cout<<"true";
+    }
+    else{
+        cout<<"false";
+    }
+    //cout<<max_childSum(root).data;
     return 0;
 }
