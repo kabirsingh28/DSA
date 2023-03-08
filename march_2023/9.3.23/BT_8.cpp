@@ -71,6 +71,6 @@ void post_order(BinaryTreeNode<int> * root){
 int main()
 {   BinaryTreeNode<int> * root = takeinput_levelwise();
     //pre_order(root);
-    post_order(root);
+    //post_order(root);
     return 0;
 }
