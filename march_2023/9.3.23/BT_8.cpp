@@ -147,16 +147,17 @@ pair<int,int> diameter_height(BinaryTreeNode<int> * root){
         return p;
 }
 
-pair<int,int> min_max(BinaryTreeNode<int> * root){
-    if(root->left==NULL && root->right==NULL){
+pair<int,int> max_1n2(BinaryTreeNode<int> * root){
+
+    if(root==NULL){
         pair<int,int> p;
-        p.first = root->data;
+        p.first = -1;
         p.second = -1;
         return p;
     }
 
-    pair<int,int> leftans = min_max(root->left);
-    pair<int,int> rightans = min_max(root->right);
+    pair<int,int> leftans = max_1n2(root->left);
+    pair<int,int> rightans = max_1n2(root->right);
 
     pair<int,int> ans;
     if(leftans.first>rightans.first){
@@ -177,15 +178,61 @@ pair<int,int> min_max(BinaryTreeNode<int> * root){
             ans.second = rightans.second;
         }
     }
-    if(root->data>ans.fisrt){
-        
+    if(root->data>ans.first){
+       ans.second = ans.first;
+       ans.first = root->data;
     }
+    else if(root->data>ans.second){
+        ans.second = root->data;
+    }
+    return ans;
+}
+
+// pair<int,int> extremes(BinaryTreeNode<int> * root){
+//       if(root==NULL){
+//         pair<int,int> p;
+//         p.first = -1;
+//         p.second = -1;
+//         return p;
+//     }
+
+//     pair<int,int> leftans = extremes(root->left);
+//     pair<int,int> rightans = extremes(root->right);
+
+//     pair<int,int> ans;
+//     ans.first = max(root->data,max(leftans.first,rightans.first));
+//     int temp;
+//     if(leftans.second==-1 || rightans.second==-1){
+//         if(max(leftans.second,rightans.second)==-1){
+//         ans.second = root->data;
+//         }
+//         else ans.second = min(root->data,max(leftans.second,rightans.second));
+//     }
+//     else ans.second = min(root->data,min(leftans.second,rightans.second));
+//     return ans;
+// }
+
+pair<int,int> extremes(BinaryTreeNode<int> * root){
+      if(root==NULL){
+        pair<int,int> p;
+        p.first = INT_MIN;
+        p.second = INT_MAX;
+        return p;
+    }
+
+    pair<int,int> leftans = extremes(root->left);
+    pair<int,int> rightans = extremes(root->right);
+
+    pair<int,int> ans;
+    ans.first = max(root->data,max(leftans.first,rightans.first));
+    ans.second = min(root->data,min(leftans.second,rightans.second));
     return ans;
 }
 
 int main()
 {   BinaryTreeNode<int> * root = takeinput_levelwise();
-    cout<<min_max(root).first<<" "<<min_max(root).second;
+    cout<<extremes(root).first<<" "<<extremes(root).second;
+    //cout<<max_1n2(root).first<<" "<<max_1n2(root).second;
     //cout<<diameter_height(root).second;
     // int n;
     // cin>>n;
