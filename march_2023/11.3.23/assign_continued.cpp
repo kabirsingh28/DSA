@@ -2,6 +2,17 @@
 using namespace std;
 #include "BinaryTreeNode.h"
 
+class node{
+    public:
+    int data;
+    node* next;
+
+    node(int data){
+        this->data = data;
+        next = NULL;
+    }
+};
+
 template <typename T, typename S>
 class Pair{
     public:
@@ -119,9 +130,57 @@ void level_order(BinaryTreeNode<int> * root){
     }
 }
 
+BinaryTreeNode<int>* remove_leafs(BinaryTreeNode<int> * root){
+    if(root->left==NULL && root->right==NULL) return NULL;
+    if(root->left!=NULL) root->left = remove_leafs(root->left);
+    if(root->right!=NULL) root->right = remove_leafs(root->right);
+    return root;
+}
+
+vector<node*> levelWise_LL(BinaryTreeNode<int> * root){
+    queue<BinaryTreeNode<int>*> pendingQueue;
+    pendingQueue.push(root);
+    pendingQueue.push(NULL);
+    node * head = NULL;
+    node * tail = NULL;
+    vector<node*> v;
+    while(!pendingQueue.empty()){
+        BinaryTreeNode<int> * front = pendingQueue.front();
+        pendingQueue.pop();
+        if(front==NULL){
+            v.push_back(head);
+            if(pendingQueue.empty()) break;
+            pendingQueue.push(NULL);
+            head = NULL;
+            tail = NULL;
+        }
+        else{
+            node * newNode = new node(front->data);
+            if(head==NULL){
+                head = newNode;
+                tail = newNode;
+            }
+            else{
+                tail->next = newNode;
+                tail = tail->next;
+            }
+            if(front->left!=NULL) pendingQueue.push(front->left);
+            if(front->right!=NULL) pendingQueue.push(front->right);
+
+        }
+    }
+    return v;
+}
+
 int main()
 {  BinaryTreeNode<int> * root = takeinput_levelwise();
-   level_order(root);
+   vector<node*> v = levelWise_LL(root);
+   for(int i=0; i<v.size(); i++){
+    cout<<v[i]->data<<" ";
+   }
+//    level_order(root);
+//    cout<<endl<<endl;
+//    level_order(remove_leafs(root));
 //    if(bal_height(root).isBalanced) cout<<"true";
 //    else cout<<"false";
 //    if(is_balanced(root)) cout<<"true";
