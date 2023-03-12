@@ -184,7 +184,6 @@ void zig_zag(BinaryTreeNode<int> * root){
     stack<BinaryTreeNode<int>*> pendingStack_1;
     stack<BinaryTreeNode<int>*> pendingStack_2;
     pendingStack_1.push(root);
-    int i = 1;
     while(!pendingStack_1.empty() || !pendingStack_2.empty()){
         while(!pendingStack_1.empty()){
         BinaryTreeNode<int> * top = pendingStack_1.top();
