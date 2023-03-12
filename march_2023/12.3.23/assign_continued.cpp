@@ -172,12 +172,47 @@ vector<node*> levelWise_LL(BinaryTreeNode<int> * root){
     return v;
 }
 
+void nodes_without_siblings(BinaryTreeNode<int> * root){
+    if(root==NULL) return;
+    if(root->left!=NULL && root->right==NULL) cout<<root->left->data<<" ";
+    if(root->right!=NULL && root->left==NULL) cout<<root->right->data<<" ";
+    nodes_without_siblings(root->left);
+    nodes_without_siblings(root->right);
+}
+
+void zig_zag(BinaryTreeNode<int> * root){
+    stack<BinaryTreeNode<int>*> pendingStack_1;
+    stack<BinaryTreeNode<int>*> pendingStack_2;
+    pendingStack_1.push(root);
+    int i = 1;
+    while(!pendingStack_1.empty() || !pendingStack_2.empty()){
+        while(!pendingStack_1.empty()){
+        BinaryTreeNode<int> * top = pendingStack_1.top();
+        pendingStack_1.pop();
+            cout<<top->data<<" ";
+            if(top->left!=NULL) pendingStack_2.push(top->left);
+            if(top->right!=NULL) pendingStack_2.push(top->right);
+    }
+    if(!pendingStack_2.empty()) cout<<endl;
+        while(!pendingStack_2.empty()){
+        BinaryTreeNode<int> * top = pendingStack_2.top();
+        pendingStack_2.pop();
+            cout<<top->data<<" ";
+            if(top->right!=NULL) pendingStack_1.push(top->right);
+            if(top->left!=NULL) pendingStack_1.push(top->left);
+    }
+    if(!pendingStack_1.empty()) cout<<endl;
+    }
+}
+
 int main()
 {  BinaryTreeNode<int> * root = takeinput_levelwise();
-   vector<node*> v = levelWise_LL(root);
-   for(int i=0; i<v.size(); i++){
-    cout<<v[i]->data<<" ";
-   }
+   zig_zag(root);
+//    nodes_without_siblings(root);
+//    vector<node*> v = levelWise_LL(root);
+//    for(int i=0; i<v.size(); i++){
+//     cout<<v[i]->data<<" ";
+//    }
 //    level_order(root);
 //    cout<<endl<<endl;
 //    level_order(remove_leafs(root));
