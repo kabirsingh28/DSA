@@ -2,13 +2,6 @@
 using namespace std;
 #include "BinaryTreeNode.h"
 
-class isbstReturn{
-    public:
-    bool isBST;
-    int min;
-    int max;
- };
-
 BinaryTreeNode<int>* takeinput_levelwise(){
    int rootData;
    cout<<"Enter root data:"<<endl;
@@ -77,40 +70,10 @@ bool isBST(BinaryTreeNode<int> * root){
     return output;
 }
 
-isbstReturn isBST2(BinaryTreeNode<int> * root){
-    if(root==NULL){
-        isbstReturn output;
-        output.isBST = true;
-        output.min = INT_MAX;
-        output.max = INT_MIN;
-        return output;
-    }
-
-    isbstReturn leftOutput =  isBST2(root->left);
-    isbstReturn rightOutput =  isBST2(root->right);
-    isbstReturn final;
-    final.isBST = leftOutput.isBST && rightOutput.isBST && (root->data<=rightOutput.min) && (root->data>leftOutput.max);
-    final.min = min(root->data,min(leftOutput.min,rightOutput.min));
-    final.max = max(root->data,max(leftOutput.max,rightOutput.max));
-    return final;
-}
-
-bool isBST3(BinaryTreeNode<int> * root, int min = INT_MIN, int max = INT_MAX){
-    if(root==NULL){
-        return true;
-    }
-    if(root->data <min || root->data> max){
-        return false; 
-    }
-    else{
-        return isBST3(root->left,min,root->data-1) && isBST3(root->right,root->data,max);
-    }
-}
-
 int main()
 {   BinaryTreeNode<int> * root = takeinput_levelwise();
-    //cout<<isBST2(root).isBST;
-    cout<<isBST3(root);
+    if(isBST(root)) cout<<"true";
+    else cout<<"false";
     // int k1,k2;
     // cin>>k1>>k2;
     // printRange(root,k1,k2);
