@@ -121,12 +121,27 @@ BinaryTreeNode<int>* LCA(BinaryTreeNode<int> * root, int n1, int n2){
     else return root;
 }
 
+BinaryTreeNode<int>* LCA_BST(BinaryTreeNode<int> * root, int n1, int n2){
+    if(root==NULL) return NULL;
+    if(n1==root->data || n2==root->data) return root;
+    else if(n1<root->data && n2<root->data){
+        return LCA_BST(root->left,n1,n2);
+    }
+    else if(n1>root->data && n2>root->data){
+        return LCA_BST(root->right,n1,n2);
+    }
+    else if(n1<root->data && n2>root->data){
+        return root;
+    }
+}
+
 int main()
 {
     BinaryTreeNode<int> *root = takeinput_levelwise();
     int n1,n2;
     cin>>n1>>n2;
-    cout<<LCA(root,n1,n2)->data;
+    cout<<LCA_BST(root,n1,n2)->data;
+    //cout<<LCA(root,n1,n2)->data;
     // int sum;
     // cin >> sum;
     // pair_sum(root, sum);
