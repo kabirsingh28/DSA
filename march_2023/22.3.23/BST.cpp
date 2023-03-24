@@ -2,6 +2,14 @@
 using namespace std;
 #include "BinaryTreeNode.h"
 
+class data{
+    public:
+    int min;
+    int max;
+    bool isBST;
+    int height;
+};
+
 BinaryTreeNode<int> *takeinput_levelwise()
 {
     int rootData;
@@ -135,12 +143,34 @@ BinaryTreeNode<int>* LCA_BST(BinaryTreeNode<int> * root, int n1, int n2){
     }
 }
 
+data largest_BST(BinaryTreeNode<int> * root){
+   if(root==NULL){
+    data d;
+    d.min = INT_MAX;
+    d.max = INT_MIN;
+    d.isBST = true;
+    d.height = 0;
+    return d;
+   }
+
+   data leftans = largest_BST(root->left);
+   data rightans = largest_BST(root->right);
+   data finalans;
+   finalans.min = min(root->data,min(leftans.min, rightans.min));
+   finalans.max = max(root->data,max(leftans.max, rightans.max));
+   finalans.isBST = leftans.isBST && rightans.isBST && (root->data<=rightans.min) && (root->data>leftans.max);
+   if(finalans.isBST) finalans.height = 1 + max(leftans.height, rightans.height);
+   else finalans.height = max(leftans.height, rightans.height);
+   return finalans;
+}
+
 int main()
 {
     BinaryTreeNode<int> *root = takeinput_levelwise();
-    int n1,n2;
-    cin>>n1>>n2;
-    cout<<LCA_BST(root,n1,n2)->data;
+    cout<<largest_BST(root).height;
+    // int n1,n2;
+    // cin>>n1>>n2;
+    // cout<<LCA_BST(root,n1,n2)->data;
     //cout<<LCA(root,n1,n2)->data;
     // int sum;
     // cin >> sum;
