@@ -1,1 +1,1 @@
-finished assignment on BST and binary trees
+continued assignment on BST and binary trees
