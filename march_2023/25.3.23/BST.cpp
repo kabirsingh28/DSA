@@ -6,7 +6,7 @@ class data{
     public:
     int min;
     int max;
-    bool isBST;
+    bool isBST; 
     int height;
 };
 
@@ -186,13 +186,59 @@ void rootToleaf_path(BinaryTreeNode<int> * root, int K, int currentSum, vector<i
       
 }
 
+void printNodeAtDepth(BinaryTreeNode<int>* root,int K){
+    if(root==NULL || K<0) return;
+    if(K==0){
+     cout<<root->data<<" ";
+     return;
+    }
+    printNodeAtDepth(root->left,K-1);
+    printNodeAtDepth(root->right,K-1);
+}
+
+//function return distance of currentRoot to target
+int printNodesAtK(BinaryTreeNode<int>* root, int target, int K){
+    if(root->data==target){
+        printNodeAtDepth(root,K);
+        return 0;
+        }
+
+    if(root==NULL) return -1;
+    int leftDistance = printNodesAtK(root->left,target,K);
+    //if leftdistance = -1 means root is not reachable, but
+    //if it is reachable then, 
+    //if leftdistance + 1 (1 is for root node) = K then
+    //we will be printing root cause then root will be K 
+    //distance apart from target
+    if(leftDistance!=-1){
+    if(leftDistance+1==K) cout<<root->data<<" ";
+    else{
+      printNodeAtDepth(root->right,K-leftDistance-2);
+    }
+    return leftDistance + 1;
+    }
+
+    int rightDistance = printNodesAtK(root->right,target,K);
+    if(rightDistance!=-1){
+    if(rightDistance+1==K) cout<<root->data<<" ";
+    else{
+       printNodeAtDepth(root->left,K-rightDistance-2);
+    }
+    return 1 + rightDistance;
+    }
+    return -1;
+}
+
 int main()
 {
     BinaryTreeNode<int> *root = takeinput_levelwise();
-    int K;
-    cin>>K;
-    vector<int> v;
-    rootToleaf_path(root,K,0,v);
+    int target, K;
+    cin>>target>>K;
+    int t = printNodesAtK(root,target,K);
+    // int K;
+    // cin>>K;
+    // vector<int> v;
+    // rootToleaf_path(root,K,0,v);
     // level_order(root);
     // replace_sum(root);
     // level_order(root);
