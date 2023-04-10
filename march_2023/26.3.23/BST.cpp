@@ -229,12 +229,66 @@ int printNodesAtK(BinaryTreeNode<int>* root, int target, int K){
     return -1;
 }
 
+// bool isPresent(BinaryTreeNode<int>* root, int data){
+//     if(root==NULL) return false;
+//     if(root->data==data||isPresent(root->left,data)||isPresent(root->right,data)) return true;
+//     else return false;
+// }
+
+// void printSum(BinaryTreeNode<int>* root, int sum){
+//      if(root==NULL) return;
+//      if(isPresent(root,sum-root->data)||isPresent(root,sum-root->data)){
+//         if(root->data<sum-root->data){
+//             cout<<root->data<<" "<<sum-root->data<<endl;
+//         }
+//         else{
+//             cout<<sum-root->data<<" "<<root->data<<endl;
+//         }
+//      }
+//      printSum(root->left,sum);
+//      printSum(root->right,sum);
+// }
+
+void inorder(BinaryTreeNode<int>* root,vector<int> &arr){
+    if(!root) return;
+    inorder(root->left,arr);
+    arr.push_back(root->data);
+    inorder(root->right,arr);
+}
+
+void printSum(BinaryTreeNode<int>* root, int s){
+    vector<int> arr;
+    inorder(root,arr);
+    int i=0;
+    int j= arr.size()-1;
+    bool b = false;
+    while(i<j){
+        if(arr[i]+arr[j]==s){
+             b=true;
+            j--;
+            i++;
+            cout<<arr[i]<<","<<arr[j]<<endl;
+           
+        }
+        else if(arr[i]+arr[j]>s) j--;
+        else i++;
+    }
+    if(b==false) cout<<"-1";
+    }
+
+
 int main()
 {
     BinaryTreeNode<int> *root = takeinput_levelwise();
-    int target, K;
-    cin>>target>>K;
-    int t = printNodesAtK(root,target,K);
+    int sum;
+    cin>>sum;
+    printSum(root,sum);
+    // int sum;
+    // cin>>sum;
+    // printSum(root,sum);
+    // int target, K;
+    // cin>>target>>K;
+    // int t = printNodesAtK(root,target,K);
     // int K;
     // cin>>K;
     // vector<int> v;
