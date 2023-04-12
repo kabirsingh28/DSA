@@ -13,7 +13,7 @@ int main()
     cout<<myMap.count("singh")<<endl;
     if(myMap.count("kabir")) cout<<"exsists"<<endl;
     cout<<myMap.size();
-    myMap.erase("kabir");  
+    myMap.erase("kabir");   
     if(myMap.count("kabir")) cout<<"exsists"<<endl;
 
     return 0;
