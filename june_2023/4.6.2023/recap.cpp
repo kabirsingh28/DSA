@@ -33,9 +33,39 @@ int max_freq(int *arr, int n){
     return T;
 }
 
+vector<int> intersection(int* a,int* b,int n,int m){
+       vector<int> output;
+       unordered_map<int,int> freq;
+       for(int i=0; i<n; i++){
+        freq[a[i]]++;
+       }
+       for(int i=0; i<m; i++){
+        if(freq.count(b[i])>0){
+            output.push_back(b[i]);
+        }
+       }
+       return output;
+}
 
 int main(){
-    
+    int t;
+    cin>>t;
+    while(t--){
+    int n;
+    int m;
+    cin>>n>>m;
+    int a[n], b[m];
+    for(int i=0; i<n; i++){
+        cin>>a[i];
+    }
+    for(int j=0; j<m; j++){
+        cin>>b[j];
+    }
+    vector<int> output = intersection(a,b,n,m);
+    for(int i=0; i<output.size(); i++){
+        cout<<output.at(i)<<" ";
+    }
+    }
     //   int n;
     //   cin>>n;
     //   int arr[n];
