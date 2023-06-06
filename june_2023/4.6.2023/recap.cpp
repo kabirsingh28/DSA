@@ -48,24 +48,39 @@ vector<int> intersection(int* a,int* b,int n,int m){
 }
 
 int main(){
-    int t;
-    cin>>t;
-    while(t--){
-    int n;
-    int m;
-    cin>>n>>m;
-    int a[n], b[m];
-    for(int i=0; i<n; i++){
-        cin>>a[i];
-    }
-    for(int j=0; j<m; j++){
-        cin>>b[j];
-    }
-    vector<int> output = intersection(a,b,n,m);
-    for(int i=0; i<output.size(); i++){
-        cout<<output.at(i)<<" ";
-    }
-    }
+    // unordered_map<string,int> map;
+    // map["abc"] = 1;
+    // map["def"] = 3;
+    // map["ghi"] = 5;
+    // map["jkl"] = 6;
+    // map["mno"] = 7;
+    // map["pqr"] = 9;
+
+    
+    // unordered_map<string,int>::iterator it = map.begin();
+    // map.erase(map.begin(),map.end());
+    // while(it!=map.end()){
+    //     cout<<"key: "<<it->first<<", value: "<<it->second<<"\n";
+    //     it++;
+    // }
+    // int t;
+    // cin>>t;
+    // while(t--){
+    // int n;
+    // int m;
+    // cin>>n>>m;
+    // int a[n], b[m];
+    // for(int i=0; i<n; i++){
+    //     cin>>a[i];
+    // }
+    // for(int j=0; j<m; j++){
+    //     cin>>b[j];
+    // }
+    // vector<int> output = intersection(a,b,n,m);
+    // for(int i=0; i<output.size(); i++){
+    //     cout<<output.at(i)<<" ";
+    // }
+    // }
     //   int n;
     //   cin>>n;
     //   int arr[n];
