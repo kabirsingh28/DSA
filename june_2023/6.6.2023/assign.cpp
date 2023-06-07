@@ -88,6 +88,24 @@ int pairWDK(int* a,int n,int d){
    return count;
 }
 
+int longest_subset_zero(int* a,int n){
+    unordered_map<int,int> sumFreq;
+    int sum = 0;
+    int maxlen = 0;
+    sumFreq[sum] = -1;
+    for(int i=0; i<n; i++){
+        sum+=a[i];
+        if(sumFreq.count(sum)){
+            int newlen;
+            newlen = i-sumFreq[sum];
+            maxlen = max(newlen,maxlen);
+            sumFreq.erase(sum);
+        }
+        sumFreq[sum] = i;
+   
+    }
+    return maxlen;
+}
 
 int main()
 {   
@@ -97,14 +115,18 @@ int main()
     for(int i=0; i<n; i++){
         cin>>a[i];
     }
-    int d;
-    cin>>d;
-    cout<<pairWDK(a,n,d);
 
-
-
-
-    
+    cout<<longest_subset_zero(a,n);
+     
+    // int n;
+    // cin>>n;
+    // int a[n];
+    // for(int i=0; i<n; i++){
+    //     cin>>a[i];
+    // }
+    // int d;
+    // cin>>d;
+    // cout<<pairWDK(a,n,d);    
     // int n;
     // cin>>n;
     // int a[n];
