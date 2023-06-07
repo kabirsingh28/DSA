@@ -59,15 +59,60 @@ int longest_seq(int* a,int n){
     
 }
 
+int pairWDK(int* a,int n,int d){
+    int count = 0;
+    unordered_map<int,int> seen;
+    for(int i=0; i<n; i++){
+        seen[a[i]]++;
+    }
+    if(d==0){
+    for(int i=0; i<n; i++){
+        if(seen[a[i]]>1){
+            int t = seen[a[i]];
+            count+= (t*(t-1))/2;
+            seen.erase(a[i]);
+        }
+    }
+    }
+    else{
+    for(int i=0; i<n; i++){
+    if(seen.count(a[i]-d)){
+        count+= seen[a[i]]*seen[a[i]-d];
+    }
+    if(seen.count(a[i]+d)){
+        count+= seen[a[i]]*seen[a[i]+d];
+    }
+    seen.erase(a[i]);
+   }
+    }
+   return count;
+}
+
+
 int main()
-{   int n;
+{   
+    int n;
     cin>>n;
     int a[n];
     for(int i=0; i<n; i++){
         cin>>a[i];
     }
+    int d;
+    cin>>d;
+    cout<<pairWDK(a,n,d);
+
+
+
+
     
-    cout<<longest_seq(a,n);
+    // int n;
+    // cin>>n;
+    // int a[n];
+    // for(int i=0; i<n; i++){
+    //     cin>>a[i];
+    // }
+    
+    // cout<<longest_seq(a,n);
 
     
     // string str;
