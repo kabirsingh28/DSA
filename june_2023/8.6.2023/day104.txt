@@ -1,1 +1,1 @@
-finished lecture on priority queue and gonna start assignment on priority queue 
+finished lecture on priority queues and gonna start assignment on priority queues
