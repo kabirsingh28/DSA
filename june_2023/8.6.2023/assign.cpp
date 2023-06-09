@@ -71,16 +71,53 @@ void runningMedian(int a[],int n){
 
 }
 
-int main()
-{
-    int n;
-    cin>>n;
-    int a[n];
-    for(int i=0; i<n; i++){
-        cin>>a[i];
+int timeRequired(queue<pair<int,int>>& line,int n,int k){
+    priority_queue<int> max;
+    int time = 0;
+    while(n--){
+        max.push(line.front().first);
+        line.push(line.front());
+        line.pop();
     }
+    while(1){
+        if(line.front().first==max.top()){
+            time++;
+            max.pop();
+        if(line.front().second==k) return time;
+            line.pop();
+        }
+        else{
+            line.push(line.front());
+            line.pop();
+        }
+    }
+    
+}
 
-    runningMedian(a,n);
+int main()
+{        
+    // int n;
+    // cin>>n;
+    // queue<pair<int,int>> line;
+    // for(int i=0; i<n; i++){
+    //     pair<int,int> p;
+    //     cin>>p.first;
+    //     p.second = i;
+    //     line.push(p);
+    // }
+    // int k; //index of my priority
+    // cin>>k;
+
+    // cout<<timeRequired(line,n,k);
+
+    // int n;
+    // cin>>n;
+    // int a[n];
+    // for(int i=0; i<n; i++){
+    //     cin>>a[i];
+    // }
+
+    // runningMedian(a,n);
 
     // int n;
     // cin>>n;
