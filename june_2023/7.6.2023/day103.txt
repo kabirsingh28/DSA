@@ -1,1 +1,1 @@
-finished assignment on hashmaps and gonna start priority queues
+finished assignment on hashmaps and gonna start lecture on priority queues
