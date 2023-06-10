@@ -1,2 +1,2 @@
 completed assignment on priority queues,
-and gonna start lecture on tries and huffman coding
+and gonna start lecture on tries and huffman coding (finished)
