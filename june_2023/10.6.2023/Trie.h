@@ -2,11 +2,53 @@
 #include <string.h>
 
 class Trie{
+    public:
+
     TrieNode * root;
-     public:
+     
 
      Trie(){
         root = new TrieNode('\0');
+     }
+     
+     void allPossibleWords(TrieNode* root,string word){
+        string output = "";
+        allPossibleWords(root,word,output);
+     }
+
+     void allPossibleWords(TrieNode* root,string word,string output){
+        if(root->isTerminal){
+            cout<<word+output<<endl;
+        }
+
+        for(int i=0; i<26; i++){
+            if(root->children[i]!=NULL){
+                TrieNode* child = root->children[i];
+                output += child->data;
+                allPossibleWords(child,word,output);
+            }
+        }
+        return;
+     }
+
+     TrieNode* findWord(string w){
+        return findWord(root, w);
+     }
+     
+     TrieNode* findWord(TrieNode* root,string word){
+        if(word.size()==0){
+         return root;
+        }
+
+        int index = word[0] - 'a';
+        TrieNode* child;
+        if(root->children[index]!=NULL){
+            child = root->children[index];
+        }
+        else{
+            return NULL;
+        }
+        return findWord(child, word.substr(1));
      }
 
      void insertWord(string word){
